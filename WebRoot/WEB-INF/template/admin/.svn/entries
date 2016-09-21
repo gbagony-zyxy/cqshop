@@ -1,0 +1,205 @@
+10
+
+dir
+129
+https://192.168.1.4/svn/cqshop/trunk/source/cqshop/WebRoot/WEB-INF/template/admin
+https://192.168.1.4/svn/cqshop
+
+
+
+2015-02-24T03:29:45.321830Z
+98
+yyy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+470bcb07-086a-a04f-90bf-d048b3216c7b
+
+article_category
+dir
+
+sales_ranking
+dir
+
+specification
+dir
+
+shipping_method
+dir
+
+consultation
+dir
+
+article
+dir
+
+delivery_center
+dir
+
+message
+dir
+
+brand
+dir
+
+seller
+dir
+
+statistics
+dir
+
+seller_serve
+dir
+
+parameter_group
+dir
+
+returns
+dir
+
+sitemap
+dir
+
+attribute
+dir
+
+cache
+dir
+
+delivery_corp
+dir
+
+member
+dir
+
+deposit
+dir
+
+sales
+dir
+
+ad_position
+dir
+
+area
+dir
+
+tag
+dir
+
+seller_audit
+dir
+
+js
+dir
+
+payment_method
+dir
+
+setting
+dir
+
+product
+dir
+
+log
+dir
+
+shipping
+dir
+
+member_rank
+dir
+
+storage_plugin
+dir
+
+include
+dir
+
+purchase_ranking
+dir
+
+friend_link
+dir
+
+ad
+dir
+
+promotion
+dir
+
+seo
+dir
+
+static
+dir
+
+admin
+dir
+
+common
+dir
+
+member_attribute
+dir
+
+payment_plugin
+dir
+
+print
+dir
+
+navigation
+dir
+
+profile
+dir
+
+review
+dir
+
+role
+dir
+
+seller_rank
+dir
+
+coupon
+dir
+
+refunds
+dir
+
+index
+dir
+
+product_notify
+dir
+
+order
+dir
+
+template
+dir
+
+payment
+dir
+
+product_category
+dir
+
+delivery_template
+dir
+

@@ -1,0 +1,1 @@
+shoppingActionsServicesDeclarationJS={langId:"-1",storeId:"",catalogId:"",setCommonParameters:function(A,B,C){this.langId=A;this.storeId=B;this.catalogId=C}};

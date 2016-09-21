@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0059)http://www.javamall.com.cn/b2b2c/store/business_center.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<title>示例商城</title> 
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=8">
+	
+
+
+<script src="./seller/hm.js"></script><script>
+var member = "com.enation.app.base.core.model.Member@4867b3c3";
+var loginDialog;
+var ctx="/b2b2c";
+var app_path="/b2b2c";
+</script>
+
+	<link href="http://www.javamall.com.cn:8080/b2b2c/statics/images/favicon.ico" rel="shortcut icon">
+<link rel="stylesheet" type="text/css" href="./seller/base.css">
+<link rel="stylesheet" type="text/css" href="./seller/home_header.css">
+<link rel="stylesheet" type="text/css" href="./seller/home_login.css">
+<link rel="stylesheet" type="text/css" href="./seller/style.css">
+<link rel="stylesheet" type="text/css" href="./seller/index.css">
+<link rel="stylesheet" type="text/css" href="./seller/default.css">
+
+<link rel="stylesheet" type="text/css" href="./seller/dialog.css">
+<link rel="stylesheet" type="text/css" href="./seller/shop.css">
+
+<script src="./seller/jquery.js"></script>
+<script src="./seller/jquery.validate.js"></script> 
+<script src="./seller/jquery.form-3.51.js"></script> 
+
+<script src="./seller/lhgdialog.js"></script>
+<script src="./seller/common.js"></script>
+<script src="./seller/shop.js"></script>
+<script src="./seller/CartBar.js"></script>
+<script src="./seller/jquery.blockUI.js"></script>
+<script src="./seller/LoginDialog.js"></script>
+
+<script src="./seller/jquery.cookie.js"></script>
+<script src="./seller/perfect-scrollbar.min.js"></script>
+<script src="./seller/jquery.mousewheel.js"></script>
+<!-- jquery 布局 -->
+<script src="./seller/jquery.masonry.js"></script> 
+<!-- 异步加载图片 -->
+<script src="./seller/jquery.scrollLoading-min.js"></script>
+<!-- 轮播图js -->
+<script src="./seller/jquery.SuperSlide.2.1.1.js"></script>
+<script src="./seller/jquery.ui.js"></script>
+<!-- jquery的布局插件 -->
+<script src="./seller/jquery.masonry.js"></script>
+<script type="text/javascript">
+
+var ctx="/b2b2c";
+$(function(){
+	$("#logout").click(function(){
+		$.ajax({
+			url:"/b2b2c/api/shop/member!logout.do?ajax=yes",
+			dataType:"json",
+			cache: false,             //清楚缓存，暂时测试，如果产生冲突，请优先考虑是否是这条语句。
+			success:function(result){
+				if(result.result==1){
+					//$.alert(result.message);
+					location.href="/b2b2c/index.html";
+				}else{
+					$.alert(result.message);
+				}	
+				$.Loading.hide();
+			},
+			error:function(){
+				$.Loading.hide();
+				$.alert("出错了:(");
+			}
+		});
+		return false;
+	});	
+		
+	$(".quick-menu dl").hover(function() {
+		$(this).addClass("hover");
+	},function() {
+		$(this).removeClass("hover");
+	});
+})
+
+</script>
+</head>
+<body>
+	<div id="append_parent"></div>
+	<div class="public-top-layout w">
+		<div class="topbar wrapper">
+			<div class="user-entry">
+					 您好
+					<span>
+						<a href="http://www.javamall.com.cn/b2b2c/member/member.html">julian208</a>
+					</span>
+					，欢迎来到
+					<a alt="首页" title="首页" href="http://www.javamall.com.cn/b2b2c/index.html">示例B2B2C示例商城</a>
+					<span>
+						[<a id="logout" href="javascript:void(0);">退出</a>]
+					</span>
+				<span class="seller-login"> 
+					<a href="./seller/seller.htm" target="_top" title="商家中心">
+					<script type="text/javascript">var isLogin= true;</script>
+						<i class="icon-signin"></i>
+						商家管理中心
+					</a>
+				</span>
+			</div>
+			<div class="quick-menu">
+				<dl>
+					<dt>
+						<a href="http://www.javamall.com.cn/b2b2c/member/order.html">我的订单</a><i></i>
+					</dt>
+					<dd>
+						<ul>
+							<li><a href="http://www.javamall.com.cn/b2b2c/member/order.html?status=0">待付款订单</a></li>
+							<li><a href="http://www.javamall.com.cn/b2b2c/member/order.html?order_state=5">待确认收货</a></li>
+							<li><a href="http://www.javamall.com.cn/b2b2c/member/order.html?order_state=7">待评价交易</a></li>
+						</ul>
+					</dd>	
+				</dl>
+				<dl>
+					<dt>
+						<a href="http://www.javamall.com.cn/b2b2c/member/favorite.html" title="我的收藏" target="_top">我的收藏</a><i></i>
+					</dt>
+					<dd>
+						<ul>
+							<li><a href="http://www.javamall.com.cn/b2b2c/member/favorite.html" target="_top" title="收藏的商品">收藏的商品</a></li>
+							<li><a href="http://www.javamall.com.cn/b2b2c/member/collect_store.html" target="_top" title="收藏的店铺">收藏的店铺</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						客户服务<i></i>
+					</dt>
+					<dd>
+						<ul>
+							<li><a href="http://www.javamall.com.cn/b2b2c/help-21-7.html">帮助中心</a></li>
+							<li><a href="http://www.javamall.com.cn/b2b2c/help.html?articleid=16">售后服务</a></li>
+							<li><a href="http://www.javamall.com.cn/b2b2c/help.html?articleid=8">客服中心</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						站点导航<i></i>
+					</dt>
+					<dd>
+						<ul>
+							<li><a target="_blank" href="http://www.javamall.com.cn/b2b2c/index.html">商城首页</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+<!-- 获取店铺信息  -->
+
+<!-- 商家中心样式 -->
+<link rel="stylesheet" type="text/css" href="./seller/member_store.css">
+
+<link rel="stylesheet" type="text/css" href="./seller/member.css">
+<!-- 店铺其他信息标签 test -->
+<!-- 文章 -->
+<style>
+#storeLogo {
+	opacity:0;
+	position: absolute;
+	z-index: 10;
+	width:80px;
+	left: 0px;
+}
+</style>
+<div class="layout">
+<script>
+function load(){
+	location.href="/b2b2c/store/login.html";
+}
+</script>
+<div class="sidebar">
+	<dl>
+		<dt id="sidebar_goods_manage">
+			<i class="pngFix"></i>商品管理
+		</dt>
+		<dd>
+			<a target="_blank" href="/cqshop/select_cat.html">商品发布</a>
+		</dd>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/goods/store_goods_list.html?market_enable=1">出售中的商品</a>
+		</dd>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/goods/store_goods_list.html">仓库中的商品</a>
+		</dd>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/goods/goods_cat.html">分类管理</a>
+		</dd>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/goods/goodsTags.html">标签列表</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt id="sidebar_goods_manage">
+			<i class="pngFix"></i>交易管理
+		</dt>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/order/StoreOrder.html">订单管理</a>
+		</dd>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/order/StoreOrder.html?order_state=2">待发货订单</a>
+		</dd>
+		<!-- 		
+		<dd>
+			<a href="/b2b2c/transaction/ship_list.html">发货设置</a>
+		</dd>
+ 		-->		
+ 		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/transaction/transport.html">物流工具</a>
+		</dd>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/store/StoreEvaluateList.html?replyStatus=0">评价管理</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt id="sidebar_goods_manage">
+			<i class="pngFix"></i>促销管理
+		</dt>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/store/bonus_list.html">优惠券管理</a>
+		</dd>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/groupbuy/groupbuy_list.html">团购管理</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt id="sidebar_goods_manage">
+			<i class="pngFix"></i>店铺设置
+		</dt>
+		<dd>
+			<a target="_blank" href="http://www.javamall.com.cn/b2b2c/home.html?show_c=1&store_id=6">我的店铺</a>
+		</dd>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/store/storeInfo.html">店铺设置</a>
+		</dd>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/store/auth.html">店铺认证设置</a>
+		</dd>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/store/store_slide.html">店铺幻灯片设置</a>
+		</dd>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/storesite/store_navigation.html">导航管理</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt id="sidebar_goods_manage">
+			<i class="pngFix"></i>客服管理
+		</dt>
+		<dd>
+			<a href="http://www.javamall.com.cn/b2b2c/store/StoreConsultList.html?replyStatus=0">咨询管理</a>
+		</dd>
+		<!-- 
+		<dd>
+			<a>退款记录</a>
+		</dd>
+		<dd>
+			<a>退货记录</a>
+		</dd>
+		 -->
+	</dl>
+</div>	<div class="right-content">
+		<div class="path">
+			<div>
+				<a href="./seller/示例商城.htm">商家中心</a> <span>&gt;</span> 账户概览
+			</div>
+		</div>
+		<div class="main">
+			<div id="home">
+				<div class="intro">
+					<div class="left">
+						<div class="store-pic">
+							<span class="thumb size80">
+<img src="./seller/no_picture.jpg" id="logo" height="80" width="80">							</span>
+							<em>
+								<form id="storeLogoForm">
+									<a href="javascript:void(0);" id="editStoreLogo">更改店标</a>
+									<input type="file" id="storeLogo" name="image">
+								</form>
+							</em>
+						</div>
+						<dl class="basic">
+							<dd class="member-name">julian208</dd>
+							<dd class="cert">
+<img src="./seller/cert_autonym_no.gif" title="身份未认证或认证失败" alt="身份未认证或认证失败"><img src="./seller/cert_material_no.gif" title="尚未认证或认证失败" alt="尚未认证或认证失败">							</dd>
+							<dd class="credit">
+								<span> 卖家信用：0</span>
+							</dd>
+						</dl>
+						<dl>
+							<dt>店铺名称：</dt>
+							<dd>
+								<a target="_blank" href="http://www.javamall.com.cn/b2b2c/home.html?show_c=1&store_id=6">julian208</a>
+							</dd>
+							<dd>北京&nbsp;三河&nbsp;燕郊</dd>
+						</dl>
+					</div>
+					<div class="right seller-rate">
+						<h2>店铺动态评分：</h2>
+						<dl>
+							<dt>描述相符：</dt>
+							<dd class="rate-star">
+								<em><i style="width: 0%;"></i>
+								</em>
+							</dd>
+							<dd>0分</dd>
+						</dl>
+						<dl>
+							<dt>服务态度：</dt>
+							<dd class="rate-star">
+								<em><i style="width: 0%;"></i>
+								</em>
+							</dd>
+							<dd>0分</dd>
+						</dl>
+						<dl>
+							<dt>发货速度：</dt>
+							<dd class="rate-star">
+								<em><i style="width: 0%;"></i>
+								</em>
+							</dd>
+							<dd>0分</dd>
+						</dl>
+					</div>
+				</div>
+				<div class="seller-cont">
+					<div class="l">
+						<div class="stroe-info container">
+							<div class="hd">
+								<div class="shop-level">
+									<span>店铺等级：系统默认</span> <span>有效期：不限制</span> <span>可传商品：不限制</span>
+									<span>可传图片：不限制</span>
+								</div>
+								<h2>店铺提示</h2>
+							</div>
+							<div class="content">
+								<dl class="focus">
+									<h2>您需要关注的店铺情况：</h2>
+									<dt>商品提示：</dt>
+									<dd>
+										<a href="http://www.javamall.com.cn/b2b2c/goods/store_goods_list.html">仓库待上架商品
+											(<strong id="tj_goods_storage">0</strong>)</a>
+									</dd>
+									<dt>咨询提示：</dt>
+									<dd>
+										<a href="http://www.javamall.com.cn/b2b2c/store/StoreConsultList.html?replyStatus=0">买家的留言
+											(<strong id="tj_consult">0</strong>)</a>
+									</dd>
+								</dl>
+								<ul>
+									<li><a href="http://www.javamall.com.cn/b2b2c/goods/store_goods_list.html?market_enable=1">出售中的商品
+											(<strong id="tj_goods_selling">0</strong>)</a>
+									</li>
+								</ul>
+
+							</div>
+						</div>
+						<div class="business-info container">
+							<div class="hd">
+								<h2>交易提示</h2>
+							</div>
+							<div class="content">
+								<dl class="focus">
+									<h2>您需要立即处理的交易订单：</h2>
+									<dt>近期售出：</dt>
+									<dd>
+										<a href="http://www.javamall.com.cn/b2b2c/order/StoreOrder.html?order_state=1">交易中的订单 
+											(<strong id="tj_progressing">0</strong>)</a>
+									</dd>
+								</dl>
+								<ul>
+									<li><a href="http://www.javamall.com.cn/b2b2c/order/StoreOrder.html?order_state=0">待付款
+											(<strong id="tj_pending">0</strong>)</a>
+									</li>
+									<li><a href="http://www.javamall.com.cn/b2b2c/order/StoreOrder.html?order_state=2">待发货
+											(<strong id="tj_shipped">0</strong>)</a>
+									</li>
+									<li><a href="http://www.javamall.com.cn/b2b2c/order/StoreOrder.html?order_state=5">待收货
+											(<strong id="tj_shipping">0</strong>)</a>
+									</li>
+									<li><a href="http://www.javamall.com.cn/b2b2c/order/StoreOrder.html?order_state=7">待评价
+											(<strong id="tj_evalseller">0</strong>)</a>
+									</li>
+								</ul>
+
+							</div>
+						</div>
+					</div>
+					<div class="r">
+						<div class="news container">
+							<div class="hd">
+								<h2>商城公告</h2>
+							</div>
+							<div class="content">
+								<ul>
+										<li> <a target="_blank" title="公告1" href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=35">公告1</a> </li> 
+										<li> <a target="_blank" title="公告2" href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=36">公告2</a> </li> 
+								</ul>
+							</div>
+						</div>
+						<div class="contact container">
+							<div class="hd">
+								<h2>平台联系方式</h2>
+							</div>
+							<div class="content">
+								<ul>
+										<li style="width: 100%;"> 邮箱：javashop@126.com</li> 
+										<li style="width: 100%;"> 电话：400-1111-1111</li> 
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#storeLogo").change(function(){
+		var options = {
+			url : "/b2b2c/api/base/upload-image.do?subFolder=storeLogo",
+			type : "POST",
+			dataType:"json",
+			success : function(data) {
+				$.ajax({
+			    	type:"POST",
+			    	url:"/b2b2c/api/b2b2c/storeApi!editStoreLogo.do?logo="+data.fsimg ,
+			        dataType: "json",
+			        success: function(result){
+			        	if(result.result==1){
+							$("#logo").attr("src",data.img);
+			        	}else{
+			        		alert(result.message);
+			        	}
+			        },error:function(e){
+						alert("出现错误请重试");        	
+			        }
+			    });
+		 	},
+		 	error : function(e) {
+		 		alert('出现错误，请重试');
+			}
+		};
+		$("#storeLogoForm").ajaxSubmit(options);	
+	});
+})
+</script>
+<div class="footer">
+	<div class="wrapper">
+	<!-- 
+	<div id="footer-top">
+		<ul>
+			<li class="one"><strong>正品行货<em>100%正品保证</em></strong></li>
+			<li class="two"><strong>正品行货<em>100%正品保证</em></strong></li>
+			<li class="three"><strong>正品行货<em>100%正品保证</em></strong></li>
+			<li class="four"><strong>正品行货<em>100%正品保证</em></strong></li>
+			<li class="five"><strong>正品行货<em>100%正品保证</em></strong></li>
+		</ul>
+	</div>
+	 -->
+	</div>
+	<!--帮助中心-->
+	  <div id="faq">
+	  <div class="wrapper">
+	    <ul>
+	        <li>
+		        <dl class="s1">
+		          	<dt>新手上路 </dt>
+		          			          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=10" title="顾客必读">顾客必读</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=11" title="会员等级折扣">会员等级折扣</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=13" title="积分规则">积分规则</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=32" title="购物流程">购物流程</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=31" title="常见问题">常见问题</a>
+		          		</dd>
+		       </dl>
+	      	</li>
+	        <li>
+	        	<dl class="s2">
+	          		<dt>支付</dt>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=20" title="支付方式">支付方式</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=28" title="付款常见问题">付款常见问题</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=29" title="索取发票">索取发票</a>
+		          		</dd>
+	            </dl>
+	      </li>
+	      <li>
+	    		<dl class="s3">
+			        <dt>配送</dt>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=30" title="配送范围">配送范围</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=21" title="配送方式">配送方式</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=23" title="关于收货与验货">关于收货与验货</a>
+		          		</dd>
+	          	</dl>
+	      </li>
+	      <li>
+	        	<dl class="s4">
+	          		<dt>服务</dt>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=16" title="售后服务">售后服务</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=18" title="免责条款">免责条款</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=14" title="商品退换货保障">商品退换货保障</a>
+		          		</dd>
+	           </dl>
+	      </li>
+	      <li>
+	        	<dl class="s5">
+	          		<dt>帮助</dt>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=26" title="满百免运费">满百免运费</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=27" title="晒单免单">晒单免单</a>
+		          		</dd>
+		        </dl>
+	      </li>
+	      <li>
+	        	<dl class="s6">
+	          		<dt>关于我们 </dt>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=33" title="订单查询">订单查询</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=12" title="订单状态">订单状态</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="http://www.javamall.com.cn/b2b2c/store/help.html?articleid=34" title="订单常见问题">订单常见问题</a>
+		          		</dd>
+	            </dl>
+	      </li>
+	      <div class="clear"></div>
+	    </ul>
+	  </div>
+	</div>
+	<!--底部版权，调用footer.php-->
+	<div id="footer">
+		<div class="wrapper">
+		  <p><a href="javascript:void(0);">首页</a>
+             | <a href="javascript:void(0);">招聘英才</a>
+             | <a href="javascript:void(0);">广告合作</a>
+             | <a href="javascript:void(0);">联系我们</a>
+             | <a href="javascript:void(0);">关于我们</a>
+          </p>
+		</div>
+	</div>
+	</div>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?695a60ef05a898e14ac5eeebf8756d6a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+	
+
+
+
+
+<div class="" style="display: none; visibility: hidden; position: absolute;"><table class="ui_border"><tbody><tr><td class="ui_lt"></td><td class="ui_t"></td><td class="ui_rt"></td></tr><tr><td class="ui_l"></td><td class="ui_c"><div class="ui_inner"><table class="ui_dialog"><tbody><tr><td colspan="2"><div class="ui_title_bar"><div class="ui_title" unselectable="on" style="cursor: auto;"></div><div class="ui_title_buttons"><a class="ui_min" href="javascript:void(0);" title="最小化" style="display: none;"><b class="ui_min_b"></b></a><a class="ui_max" href="javascript:void(0);" title="最大化" style="display: none;"><b class="ui_max_b"></b></a><a class="ui_res" href="javascript:void(0);" title="还原"><b class="ui_res_b"></b><b class="ui_res_t"></b></a><a class="ui_close" href="javascript:void(0);" title="关闭(esc键)" style="display: inline-block;">×</a></div></div></td></tr><tr><td class="ui_icon" style="display: none;">&lt;@image src="" class="ui_icon_bg"/&gt;</td><td class="ui_main" style="width: auto; height: auto;"><div class="ui_content" style="padding: 10px;"></div></td></tr><tr><td colspan="2"><div class="ui_buttons" style="display: none;"></div></td></tr></tbody></table></div></td><td class="ui_r"></td></tr><tr><td class="ui_lb"></td><td class="ui_b"></td><td class="ui_rb" style="cursor: auto;"></td></tr></tbody></table></div></body></html>

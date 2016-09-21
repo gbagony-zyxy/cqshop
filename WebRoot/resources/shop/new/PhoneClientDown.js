@@ -1,0 +1,1 @@
+var th;$(document).ready(function(){$("li.hd_mobile ").mouseover(function(){clearTimeout(th);$("li.hd_mobile").addClass("hd_mobile_hover");$(".hd_mobile_show").show()});$("li.hd_mobile ").mouseout(function(){th=setTimeout(function(){$("li.hd_mobile").removeClass("hd_mobile_hover");$(".hd_mobile_show").hide()},200)})});

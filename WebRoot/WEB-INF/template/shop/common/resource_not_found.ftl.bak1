@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wairole="http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#" xmlns:waistate="http://www.w3.org/2005/07/aaa" lang="zh" xml:lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>潭门砗磲网</title>
+<meta name="description" content="潭门砗磲网自主营销砗磲、砗磲项链、砗磲摆件">
+<meta name="keywords" content="潭门砗磲网商城、潭门砗磲网、砗磲、砗磲精品、砗磲摆件">
+<meta name="pageName" content="HomePage">
+<!-- Include script files -->
+<!-- BEGIN CommonJSToInclude.jspf -->
+<meta name="CommerceSearch" content="storeId_10151">
+<link rel="shortcut icon" href="http://mall.gree.com/wcsstore/GreeStorefrontAssetStore/images/icon-favicon.ico"
+ mce_href="/wcsstore/GreeStorefrontAssetStore/images/icon-favicon.ico">
+<script src="${base}/resources/shop/new/hm.js"></script>
+<script type="text/javascript">
+	// Convert the WCParam object which contains request properties into javascript object
+	var WCParamJS = {
+		"storeId":'10151',
+		"catalogId":'10001',
+		"langId":'-7',
+		"pageView":'',
+		"orderBy":'',
+		"orderByContent":'',
+		"searchTerm":''
+	};
+	var absoluteURL = "http://mall.gree.com/mall/";
+	var imageDirectoryPath = "/wcsstore/GreeStorefrontAssetStore/";
+	var styleDirectoryPath = "images/colors/color1/";
+	var supportPaymentTypePromotions = false;
+	
+	var subsFulfillmentFrequencyAttrName = "fulfillmentFrequency";
+	var subsPaymentFrequencyAttrName = "paymentFrequency";
+	var subsTimePeriodAttrName = "timePeriod";
+	
+	var storeNLS = null;
+	var storeUserType = "G";
+	var ios = false;
+	var android = false;
+	var multiSessionEnabled = false;
+	// Store the amount of time of inactivity before a re-login is required, this value is retrieved from wc-server.xml, default is 30 mins
+	var inactivityTimeout = 1800000;
+	
+	// Store the amount of time the inactivity warning dialog will be displayed before it closes itself, default is 20 seconds
+	var inactivityWarningDialogDisplayTimer = 20000;
+	
+	// Store the amount of time to display a inactivity warning dialog before a re-login is required, default is 30 seconds
+	var inactivityWarningDialogBuffer = 30000;
+	
+	// Store the timing event to display the inactivity dialog
+	var inactivityTimeoutTracker = null;
+
+	// Store the timing event to close the inactivity dialog
+	var dialogTimeoutTracker = null;
+	
+	//Summary: Returns the absolute URL to use for prefixing any Ajax URL call.
+	//Description: Dojo does not handle the case where the parameters in the URL are delimeted by the "/" forward slash. Therefore, in order to
+	//             workaround the issue, all AJAX requests must be done using absolute URLs rather than relative.
+	//Returns: The absolute URL to use for prefixing any Ajax URL call.
+	function getAbsoluteURL() {
+		if (absoluteURL != "") {
+			var currentURL = document.URL;
+			var currentProtocol = "";
+		
+			if (currentURL.indexOf("://") != -1) {
+				currentProtocol = currentURL.substring(0, currentURL.indexOf("://"));
+			}
+			
+			var savedProtocol = "";
+			if (absoluteURL.indexOf("://") != -1) {
+				savedProtocol = absoluteURL.substring(0, absoluteURL.indexOf("://"));
+			}
+			
+			if (currentProtocol != savedProtocol) {
+				absoluteURL = currentProtocol + absoluteURL.substring(absoluteURL.indexOf("://"));
+			}
+		}
+		
+		return absoluteURL;
+	}
+	//Summary: Returns the path pointing to the shared image directory.
+	//Description: In order to get the image directory path in any javascript file, this function can be used.
+	//Returns: The path to reference images.
+	function getImageDirectoryPath() {
+		return imageDirectoryPath;
+	}
+	//Summary: Returns the path pointing to the directory containing color-dependant image files.
+	//Description: In order to get the directory containing color-dependant image files in any javascript file, this function can be used.
+	//Returns: The path to reference color-dependant image files.
+	function getStyleDirectoryPath() {
+		return styleDirectoryPath;
+	}
+</script>
+<script type="text/javascript" src="${base}/resources/shop/new/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/new/jqScroll.js"></script>
+<script type="text/javascript">
+$( document ).ready(function(){
+	if(typeof(isForceLogon) == "undefined"){
+		$.ajax({
+			url:'/wcsstore/GreeStorefrontAssetStore/javascript/City/city.html',
+			success: function(html){
+				$('#bigpobbox').html(html);
+			},
+			dataType: 'html',
+			contentType: "application/x-www-form-urlencoded; charset=utf-8"
+		});
+	}
+});
+
+var GLAjaxLoacateCityURL = 'http://mall.gree.com/mall/GLAjaxLoacateCity?';
+var GLAjaxChangeCityURL = 'http://mall.gree.com/mall/GLAjaxChangeCity?';
+
+if('https:' == document.location.protocol ){
+	GLAjaxLoacateCityURL = GLAjaxLoacateCityURL.replace('http','https');
+	GLAjaxChangeCityURL = GLAjaxChangeCityURL.replace('http','https');
+}
+</script>
+<script type="text/javascript" src="${base}/resources/shop/new/jquery.lazyload.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/new/CityActions.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/new/tanchu.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/new/jquery.nicenav.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/new/CatentryListJS.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/new/ShoppingActions.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/new/ShoppingActionsServicesDeclaration.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/new/Search.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${base}/resources/shop/css/base.css">
+<link rel="stylesheet" type="text/css" href="${base}/resources/shop/css/header.css">
+<link rel="stylesheet" type="text/css" href="${base}/resources/shop/css/Pop-up-box.css">
+<link rel="stylesheet" type="text/css" href="${base}/resources/shop/css/footer.css">
+<!-- END CommonJSToInclude.jspf -->
+<!-- menu required -->
+<script type="text/javascript">
+			//var menueDisplay=false;
+			$(function() { 
+				shoppingActionsJS.setCommonParameters('-7','10151','10001','G','CNY');
+				shoppingActionsServicesDeclarationJS.setCommonParameters('-7','10151','10001');
+			});
+			//lazyload js
+			$(function() {
+	          	$("img").lazyload({ 
+	    			effect:'fadeIn' 
+				});
+     		 });
+		</script>
+<link id="live800_chat_style" type="text/css" rel="stylesheet" href="${base}/resources/shop/new/winSkin.css">
+<script id="live800_iframe_message" type="text/javascript" src="${base}/resources/shop/new/messenger.js" charset="UTF-8"></script>
+</head>
+<body>
+<!-- Begin Page -->
+<div id="page">
+	[#include "/shop/include/header.ftl" /]
+	
+	[#include "/shop/include/footer.ftl" /]
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="cqshop"
+  id="myeclipse.1414316162125"
+  context-root="/cqshop"
+  j2ee-spec="5.0"
+  archive="cqshop.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

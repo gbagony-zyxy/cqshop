@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cqshop/!svn/ver/119/trunk/source/cqshop/WebRoot/WEB-INF/template/shop/common
+END
+resource_not_found.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/cqshop/!svn/ver/119/trunk/source/cqshop/WebRoot/WEB-INF/template/shop/common/resource_not_found.ftl
+END
+error.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/cqshop/!svn/ver/119/trunk/source/cqshop/WebRoot/WEB-INF/template/shop/common/error.ftl
+END
+site_close.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/cqshop/!svn/ver/119/trunk/source/cqshop/WebRoot/WEB-INF/template/shop/common/site_close.ftl
+END

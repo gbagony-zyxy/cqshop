@@ -1,0 +1,1 @@
+(function(A){A.extend({"nicenav":function(C){C=typeof C==="number"?C:400;var B=A("#navviga>li"),D=A("#buoy");B.hover(function(){D.stop().animate({"left":A(this).offsetParent().context.offsetLeft},C)},function(){D.stop().animate({"left":"-84px"},C)})}})}(jQuery));

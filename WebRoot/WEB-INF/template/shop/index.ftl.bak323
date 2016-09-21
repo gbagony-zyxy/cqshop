@@ -1,0 +1,889 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+[@seo type = "index"]
+	<title>[#if seo.title??][@seo.title?interpret /][#else]${message("shop.index.title")}[/#if]</title>
+	
+	
+	[#if seo.keywords??]
+		<meta name="keywords" content="[@seo.keywords?interpret /]" />
+	[/#if]
+	[#if seo.description??]
+		<meta name="description" content="[@seo.description?interpret /]" />
+	[/#if]
+[/@seo]
+
+
+
+<link type="text/css" rel="stylesheet" href="${base}/resources/shop/css1/base.css" />
+<link type="text/css" rel="stylesheet" href="${base}/resources/shop/css1/index.css" />
+<link type="text/css" rel="stylesheet" href="${base}/resources/shop/css1/home_header.css" />
+
+<link href="${base}/resources/shop/css/common.css" rel="stylesheet" type="text/css" />
+<link href="${base}/resources/shop/css/index.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="${base}/resources/shop/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/js/adv.js"></script>
+<script type="text/javascript">
+
+
+	var goodsSearchTxt = '请输入您要搜索的商品关键字';
+	var storeSearchTxt = '请输入您要搜索的店铺关键字';
+	$(function() {
+		$("#inquiry").click(function() {
+			var search = $("#search li[class='current']").attr(
+					"search");
+			if ($("#namekeyword").val() == goodsSearchTxt && search == "goods") {
+				alert(goodsSearchTxt);
+			} else if ($("#namekeyword").val() == storeSearchTxt && search == "store") {
+				alert(storeSearchTxt);
+			} else if (!$("#namekeyword").val() == "" && search == "goods") {
+				location.href = ctx
+						+ "/goods_list.html?namekeyword="
+						+ $("#namekeyword").val() + "&search="
+						+ search;
+			} else if (!$("#namekeyword").val() == ""
+					&& search == "store") {
+				location.href = ctx
+						+ "/store_list.html?namekeyword="
+						+ $("#namekeyword").val() + "&search="
+						+ search;
+			}
+		});
+		$("#namekeyword").blur(function() {
+			if ($("#namekeyword").val() == "") {
+				var search = $("#search li[class='current']").attr("search");
+				if (search == "goods")
+					$("#namekeyword").val(goodsSearchTxt);
+				else if (search == "store")
+					$("#namekeyword").val(storeSearchTxt);
+			}
+		});
+		$("#namekeyword").focus(function() {
+			var search = $("#search li[class='current']")
+					.attr("search");
+			var searchTxt = "";
+			if (search == "goods"
+					&& $("#namekeyword").val() == goodsSearchTxt) {
+				$("#namekeyword").val("");
+			} else if (search == "store"
+					&& $("#namekeyword").val() == storeSearchTxt) {
+				$("#namekeyword").val("");
+			}
+		});
+		$("#search .tab li").click(function() {
+			var search = $(this).attr("search");
+			if (search == "goods") {
+				$("#namekeyword").val(goodsSearchTxt);
+				$("#search li[search='goods']").addClass("current");
+				$("#search li[search='store']").removeClass("current");
+			} else {
+				$("#namekeyword").val(storeSearchTxt);
+				$("#search li[search='store']").addClass("current");
+				$("#search li[search='goods']").removeClass("current");
+			}
+		});
+	});
+</script>
+
+<script type="text/javascript" src="${base}/resources/shop/js/focus.js"></script>
+
+<!-- 获取商品列表标签 -->
+<!-- 创建广告标签 -->
+<!-- 文章 -->
+<div class="clear"></div>
+<style type="text/css">
+.category {
+	display: block !important;
+}
+/* focus */
+#focus{width:776px;height:295px;overflow:hidden;position:relative;}
+#focus ul{height:295px;position:absolute;}
+#focus ul li{float:left;width:776px;height:295px;overflow:hidden;position:relative;background:#000;}
+#focus ul li div{position:absolute;overflow:hidden;}
+#focus .btnBg{position:absolute;width:800px;height:20px;left:0;bottom:0;background:#000;}
+#focus .btnn{position:absolute;width:780px;height:10px;padding:5px 10px;right:0;bottom:0;text-align:right;}
+#focus .btnn span{display:inline-block;_display:inline;_zoom:1;width:25px;height:10px;_font-size:0;margin-left:5px;cursor:pointer;background:#fff;}
+#focus .btnn span.on{background:#fff;}
+#focus .preNext{width:45px;height:100px;position:absolute;top:90px;background:url(img/sprite.png) no-repeat 0 0;cursor:pointer;}
+#focus .pre{left:0;}
+#focus .next{right:0;background-position:right top;}
+</style>
+</head>
+<body>
+[#include "/shop/include/header.ftl" /]
+<div class="clear"></div>
+<div class="home-focus-layout">
+	<!-- 轮播广告 -->
+	
+	<div class="banner pr" style="height:481px;">
+		<div style="width:776px;height:481px;margin:0px auto;position:relative">		
+			<div id="focus">
+				<ul style="left: 0px; width: 3104px;">
+				[#list adPosition.ads as ad]
+						<li>
+								<a target="_blank" title="潮人双肩包69元起" href="/b2b2c/core/adv!click.do?advid=1 ">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/1.jpg" alt="潮人双肩包69元起" width="776px" border="0">								</a>
+						</li>
+				[/#list]
+				[#--		<li>
+								<a target="_blank" title="男士POLO衫特价68元" href="/b2b2c/core/adv!click.do?advid=2 ">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/2.jpg" alt="男士POLO衫特价68元" width="776px" border="0">								</a>
+						</li>
+						<li>
+								<a target="_blank" title="真空压缩袋节省空间67%" href="/b2b2c/core/adv!click.do?advid=3 ">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/3.jpg" alt="真空压缩袋节省空间67%" width="776px" border="0">								</a>
+						</li>
+						<li>
+								<a target="_blank" title="早春运动针织长裤69元起" href="/b2b2c/core/adv!click.do?advid=4 ">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/4.jpg" alt="早春运动针织长裤69元起" width="776px" border="0">								</a>
+						</li> --]
+				</ul>
+				
+			<div class="btnBg" style="opacity: 0.5;"></div>
+		
+			<div class="preNext pre" style="opacity: 0.2;"></div>
+			<div class="preNext next" style="opacity: 0.2;"></div>
+			</div>
+			
+			<div class="three_adv">
+				<!-- 调用广告信息,传递参数acid:1 -->
+				<!-- 获取广告列表 -->
+				<ul>
+						<li class="frist">
+								<a target="_blank" title="潮人双肩包69元起" href="javascript:void(0);">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/1.jpg" alt="潮人双肩包69元起" border="0">								</a>
+						</li>
+						<li class="">
+								<a target="_blank" title="男士POLO衫特价68元" href="javascript:void(0);">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/2.jpg" alt="男士POLO衫特价68元" border="0">								</a>
+						</li>
+						<li class="">
+								<a target="_blank" title="真空压缩袋节省空间67%" href="javascript:void(0);">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/3.jpg" alt="真空压缩袋节省空间67%" border="0">								</a>
+						</li>
+						<li class="">
+								<a target="_blank" title="早春运动针织长裤69元起" href="javascript:void(0);">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/4.jpg" alt="早春运动针织长裤69元起" border="0">								</a>
+						</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="right-sidebar">
+		<div class="policy">
+			<ul>
+				<li class="b1">十天包退</li>
+				<li class="b2">次品保障</li>
+				<li class="b3">闪电发货</li>
+			</ul>
+		</div>
+		<!---团购模块-->
+		<div class="groupbuy">
+			<div class="title">
+				<i>团</i>限时团购
+			</div>
+		</div>
+
+		<div class="proclamation">
+			<ul class="tabs-nav">
+				<li class="tabs-selected"><h3>商城公告</h3></li>
+				<li><h3>联系方式</h3></li>
+			</ul>
+			<div class="tabs-panel">
+				<ul class="mall-news">
+					<!-- 调用CMS数据搜索标签，并传递所在模型ID参数-->
+						<li> 
+							<a href="help.html?articleid=35">公告1</a>
+						</li> 
+						<li> 
+							<a href="help.html?articleid=36">公告2</a>
+						</li> 
+				</ul>
+			</div>
+			<div class="tabs-panel tabs-hide">
+				<ul>
+					<li style="width: 100%;"> 邮箱：javashop@126.com</li> 
+					<li style="width: 100%;"> 电话：400-1111-1111</li> 
+				</ul>
+        	</div>
+		</div>
+	</div>
+</div>
+<div class="home-sale-layout wrapper">
+	<div class="left-layout">
+		<ul class="tabs-nav">
+			<li class="tabs-selected" rel="1"><i class="arrow"></i>
+				<h3>特别推荐</h3></li>
+			<li rel="2"><i class="arrow"></i>
+				<h3>猜你喜欢</h3></li>
+			<li rel="3"><i class="arrow"></i>
+				<h3>新品上市</h3></li>
+			<li rel="4"><i class="arrow"></i>
+				<h3>疯狂抢购</h3></li>
+		</ul>
+		<!--特别推荐-->
+		<div style="width:989px;height:250px;overflow:hidden;">
+		<div class="tabs-panel sale-goods-list " id="goods1">
+			<ul class="specially">
+				<!-- 特别推荐标签-->
+
+			</ul>
+		</div>
+		<!---猜你喜欢---->
+		<div class="tabs-panel sale-goods-list" id="goods2">
+			<ul class="specially">
+				<!-- 猜你喜欢标签-->
+
+			</ul>
+		</div>
+		<!---新品上市---->
+		<div class="tabs-panel sale-goods-list" id="goods3">
+			<ul class="specially">
+				<!-- 新品上市标签-->
+
+			</ul>
+		</div>
+		<!---疯狂抢购---->
+		<div class="tabs-panel sale-goods-list" id="goods4">
+			<ul class="specially">
+				<!-- 疯狂抢购标签-->
+
+			</ul>
+		</div>
+		</div>
+	</div>
+	<div class="right-sidebar">
+		<!---限时打折-->
+		<div class="title">
+			<h3>限时打折</h3>
+		</div>
+	</div>
+</div>
+<!--HomeFocusLayout End-->
+<div class="clear"></div>
+<!--首页分类，后台设置-->
+<div class="home-standard-layout wrapper style-pink">
+	<div class="left-sidebar">
+		<div class="title">
+			<div class="pic-type">
+				<img border="0" src="themes/b2b2c/images/home/web-3.png">
+			</div>
+		</div>
+		<div class="left-ads">
+			<a href="javascript:void(0);" target="_blank"> 
+				<!-- 获取广告品牌列表 -->
+									<!-- 获取广告图片宽度 -->
+					<!-- 获取广告图片高度 -->
+						</a><a target="_blank" href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/web-2-23_7e6e01e3a07747e26d2bc6594e5d11db.png" height="280" alt="美妆左侧上方广告" width="212" border="0"></a>
+		</div>
+		<div class="recommend-classes">
+			<ul>
+				<li><a href="javascript:void(0);" title="风衣" target="_blank">风衣</a></li>
+				<li><a href="javascript:void(0);" title="打底衫" target="_blank">打底衫</a></li>
+				<li><a href="javascript:void(0);" title="牛仔裤" target="_blank">牛仔裤</a></li>
+				<li><a href="javascript:void(0);" title="毛呢连衣裙" target="_blank">毛呢连衣裙</a></li>
+				<li><a href="javascript:void(0);" title="长袖连衣裙" target="_blank">长袖连衣裙</a></li>
+				<li><a href="javascript:void(0);" title="羽绒服" target="_blank">羽绒服</a></li>
+				<li><a href="javascript:void(0);" title="卫衣" target="_blank">卫衣</a></li>
+				<li><a href="javascript:void(0);" title="长袖T恤" target="_blank">长袖T恤</a></li>
+				<li><a href="javascript:void(0);" title="长袖衬衫" target="_blank">长袖衬衫</a></li>
+				<li><a href="javascript:void(0);" title="品质秋冬外套" target="_blank">品质秋冬外套</a></li>
+				<li><a href="javascript:void(0);" title="风衣" target="_blank">风衣</a></li>
+				<li><a href="javascript:void(0);" title="休闲西装" target="_blank">休闲西装</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="middle-layout">
+		<ul class="tabs-nav">
+			<li class="tabs-selected"><i class="arrow"></i>
+				<h3>美容美妆</h3></li>
+		</ul>
+		<div class="tabs-panel middle-banner-style01 fade-img " id="index_advimg">
+
+			<!-- 获取a广告列表 -->
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+					<li class="a1">
+						<a href="/b2b2c">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/bc04604eb390f8907db48e51862f97c9.png" height="194" alt="美妆A美食免费试吃" width="194" class="aaaaaa" rel="22" border="0" style="opacity: 0.5; background: rgb(0, 0, 0);">						</a>
+					</li>
+					<li class="a2">
+						<a href="/b2b2c">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/78f073a735fcaf56e4def853a2e28753.png" height="194" alt="美妆A浪漫桃花季" width="194" class="aaaaaa" rel="23" border="0" style="opacity: 0.5; background: rgb(0, 0, 0);">						</a>
+					</li>
+
+			<!-- 获取b广告列表 -->
+							<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+					<li class="b1">
+						<a href="/b2b2c">
+							<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/e597db9ca5b0156f8d07a2489dca6ea4.png" height="388" alt="美妆B带着味蕾游全球" width="388" border="0" class="undefined" style="opacity: 0.5; background: rgb(0, 0, 0);"></a>
+					</li> 
+
+			<!-- 获取c广告列表 -->
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+					<li class="c1">
+						<a href="/b2b2c">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/371a354f634af10b8d230965fcdaa507.png" height="194" alt="美妆C热门美食盘点" width="194" border="0" class="undefined" style="opacity: 0.5; background: rgb(0, 0, 0);">						</a>
+					</li> 
+					<li class="c2">
+						<a href="/b2b2c">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/be0122abb369b018168abbf39d5260c5.png" height="194" alt="美妆C办公室零食" width="194" border="0" class="undefined" style="opacity: 0.5; background: rgb(0, 0, 0);">						</a>
+					</li> 
+
+			<!-- 获取d广告列表 -->
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+					<li class="d1">
+						<a href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/3c9f847ed672b7eb3d20fcac37fafc3d.png" height="110" alt="美妆D玫瑰花" width="194" border="0" class="undefined" style="opacity: 0.5; background: rgb(0, 0, 0);"></a>
+					</li> 
+					<li class="d2">
+						<a href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/d70b73b884de4f3d53797654dd3e48be.png" height="110" alt="美妆D核桃" width="194" border="0" class="undefined" style="opacity: 0.5; background: rgb(0, 0, 0);"></a>
+					</li> 
+					<li class="d3">
+						<a href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/946fa7f157b3dfae134e29abecedc2c3.png" height="110" alt="美妆D闷倒驴" width="194" border="0" class="undefined_h" style="opacity: 2;"></a>
+					</li> 
+					<li class="d4">
+						<a href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/946fa7f157b3dfae134e29abecedc2c3.png" height="110" alt="美妆D闷倒驴" width="194" border="0" class="undefined" style="opacity: 0.5; background: rgb(0, 0, 0);"></a>
+					</li> 
+		</div>
+	</div>
+	<div class="right-sidebar">
+		<div class="title"></div>
+		<div class="recommend-brand">
+			<ul>
+				<!-- 获取广告品牌列表 -->
+				 
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+				 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/62c9e3f616f979246efa261aaf4fd330.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/bd20458e82d1da3f8450b24644064cf6.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/2f04071b44b72d52034d871e51171ba7.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/849fabc1e29a127aa9cfa1d84380d037.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/21b79472d4429e8f43163293c20065ba.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/bab98e9281505417c16de65505ac8a7c.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/4ff0554da8a79ea457c0c65a5442e8f9.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/19511a928500444fe02035d4c7bb97d9.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/b2b3cb3111a10de3e73ef3ca57932c4b.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/19511a928500444fe02035d4c7bb97d9.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/04528beac290a697422f95b440b3c1be.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/2a5345853e1fb9f824ef2d7975355ae4.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li>  
+			</ul>
+		</div>
+		<div class="right-side-focus">
+			<ul>
+				<!-- 获取广告品牌列表 -->
+				 
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+				 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/ce3a61d7533a9df52a6a0674f0573b82.jpg" height="241" alt="美妆右侧品牌下广告" width="212" border="0"></a></li>  
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="home-standard-layout wrapper style-green">
+	<div class="left-sidebar">
+		<div class="title">
+			<div class="pic-type">
+				<img border="0" src="themes/b2b2c/images/home/web-2.png">
+			</div>
+		</div>
+		<div class="left-ads">
+			<a href="javascript:void(0);" target="_blank"> 
+				<!-- 获取广告品牌列表 -->
+									<!-- 获取广告图片宽度 -->
+					<!-- 获取广告图片高度 -->
+						</a><a target="_blank" href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/web-2-23_7e6e01e3a07747e26d2bc6594e5d11db.png" height="280" alt="美妆左侧上方广告" width="212" border="0"></a>
+		</div>
+		<div class="recommend-classes">
+			<ul>
+				<li><a href="javascript:void(0);" title="单肩包" target="_blank">单肩包</a></li>
+				<li><a href="javascript:void(0);" title="打底衫" target="_blank">打底衫</a></li>
+				<li><a href="javascript:void(0);" title="牛仔裤" target="_blank">牛仔裤</a></li>
+				<li><a href="javascript:void(0);" title="毛呢连衣裙" target="_blank">毛呢连衣裙</a></li>
+				<li><a href="javascript:void(0);" title="长袖连衣裙" target="_blank">长袖连衣裙</a></li>
+				<li><a href="javascript:void(0);" title="羽绒服" target="_blank">羽绒服</a></li>
+				<li><a href="javascript:void(0);" title="卫衣" target="_blank">卫衣</a></li>
+				<li><a href="javascript:void(0);" title="长袖T恤" target="_blank">长袖T恤</a></li>
+				<li><a href="javascript:void(0);" title="长袖衬衫" target="_blank">长袖衬衫</a></li>
+				<li><a href="javascript:void(0);" title="品质秋冬外套" target="_blank">品质秋冬外套</a></li>
+				<li><a href="javascript:void(0);" title="风衣" target="_blank">风衣</a></li>
+				<li><a href="javascript:void(0);" title="休闲西装" target="_blank">休闲西装</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="middle-layout">
+		<ul class="tabs-nav">
+			<li class="tabs-selected"><i class="arrow"></i>
+				<h3>美容美妆</h3></li>
+		</ul>
+		<div class="tabs-panel middle-banner-style01 fade-img " id="index_advimg">
+
+			<!-- 获取a广告列表 -->
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+					<li class="a1">
+						<a href="/b2b2c">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/bc04604eb390f8907db48e51862f97c9.png" height="194" alt="美妆A美食免费试吃" width="194" class="aaaaaa" rel="22" border="0" style="opacity: 0.5; background: rgb(0, 0, 0);">						</a>
+					</li>
+					<li class="a2">
+						<a href="/b2b2c">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/78f073a735fcaf56e4def853a2e28753.png" height="194" alt="美妆A浪漫桃花季" width="194" class="aaaaaa" rel="23" border="0" style="opacity: 0.5; background: rgb(0, 0, 0);">						</a>
+					</li>
+
+			<!-- 获取b广告列表 -->
+							<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+					<li class="b1">
+						<a href="/b2b2c">
+							<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/e597db9ca5b0156f8d07a2489dca6ea4.png" height="388" alt="美妆B带着味蕾游全球" width="388" border="0" class="undefined" style="opacity: 0.5; background: rgb(0, 0, 0);"></a>
+					</li> 
+
+			<!-- 获取c广告列表 -->
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+					<li class="c1">
+						<a href="/b2b2c">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/371a354f634af10b8d230965fcdaa507.png" height="194" alt="美妆C热门美食盘点" width="194" border="0" style="opacity: 0.5; background: rgb(0, 0, 0);">						</a>
+					</li> 
+					<li class="c2">
+						<a href="/b2b2c">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/be0122abb369b018168abbf39d5260c5.png" height="194" alt="美妆C办公室零食" width="194" border="0" style="opacity: 0.5; background: rgb(0, 0, 0);">						</a>
+					</li> 
+
+			<!-- 获取d广告列表 -->
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+					<li class="d1">
+						<a href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/3c9f847ed672b7eb3d20fcac37fafc3d.png" height="110" alt="美妆D玫瑰花" width="194" border="0" class="undefined" style="opacity: 0.5; background: rgb(0, 0, 0);"></a>
+					</li> 
+					<li class="d2">
+						<a href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/d70b73b884de4f3d53797654dd3e48be.png" height="110" alt="美妆D核桃" width="194" border="0" class="undefined" style="opacity: 0.5; background: rgb(0, 0, 0);"></a>
+					</li> 
+					<li class="d3">
+						<a href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/946fa7f157b3dfae134e29abecedc2c3.png" height="110" alt="美妆D闷倒驴" width="194" border="0" class="undefined_h" style="opacity: 2;"></a>
+					</li> 
+					<li class="d4">
+						<a href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/946fa7f157b3dfae134e29abecedc2c3.png" height="110" alt="美妆D闷倒驴" width="194" border="0" style="opacity: 0.5; background: rgb(0, 0, 0);"></a>
+					</li> 
+		</div>
+	</div>
+	<div class="right-sidebar">
+		<div class="title"></div>
+		<div class="recommend-brand">
+			<ul>
+				<!-- 获取广告品牌列表 -->
+				 
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+				 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/62c9e3f616f979246efa261aaf4fd330.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/bd20458e82d1da3f8450b24644064cf6.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/2f04071b44b72d52034d871e51171ba7.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/849fabc1e29a127aa9cfa1d84380d037.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/21b79472d4429e8f43163293c20065ba.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/bab98e9281505417c16de65505ac8a7c.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/4ff0554da8a79ea457c0c65a5442e8f9.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/19511a928500444fe02035d4c7bb97d9.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/b2b3cb3111a10de3e73ef3ca57932c4b.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/19511a928500444fe02035d4c7bb97d9.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/04528beac290a697422f95b440b3c1be.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/2a5345853e1fb9f824ef2d7975355ae4.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li>  
+			</ul>
+		</div>
+		<div class="right-side-focus">
+			<ul>
+				<!-- 获取广告品牌列表 -->
+				 
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+				 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/ce3a61d7533a9df52a6a0674f0573b82.jpg" height="241" alt="美妆右侧品牌下广告" width="212" border="0"></a></li>  
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="home-standard-layout wrapper style-blue">
+	<div class="left-sidebar">
+		<div class="title">
+			<div class="pic-type">
+				<img border="0" src="themes/b2b2c/images/home/web-1.png">
+			</div>
+		</div>
+		<div class="left-ads">
+			<a href="javascript:void(0);" target="_blank"> 
+				<!-- 获取广告品牌列表 -->
+									<!-- 获取广告图片宽度 -->
+					<!-- 获取广告图片高度 -->
+						</a><a target="_blank" href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/web-2-23_7e6e01e3a07747e26d2bc6594e5d11db.png" height="280" alt="美妆左侧上方广告" width="212" border="0"></a>
+		</div>
+		<div class="recommend-classes">
+			<ul>
+				<li><a href="javascript:void(0);" title="单肩包" target="_blank">单肩包</a></li>
+				<li><a href="javascript:void(0);" title="打底衫" target="_blank">打底衫</a></li>
+				<li><a href="javascript:void(0);" title="牛仔裤" target="_blank">牛仔裤</a></li>
+				<li><a href="javascript:void(0);" title="毛呢连衣裙" target="_blank">毛呢连衣裙</a></li>
+				<li><a href="javascript:void(0);" title="长袖连衣裙" target="_blank">长袖连衣裙</a></li>
+				<li><a href="javascript:void(0);" title="羽绒服" target="_blank">羽绒服</a></li>
+				<li><a href="javascript:void(0);" title="卫衣" target="_blank">卫衣</a></li>
+				<li><a href="javascript:void(0);" title="长袖T恤" target="_blank">长袖T恤</a></li>
+				<li><a href="javascript:void(0);" title="长袖衬衫" target="_blank">长袖衬衫</a></li>
+				<li><a href="javascript:void(0);" title="品质秋冬外套" target="_blank">品质秋冬外套</a></li>
+				<li><a href="javascript:void(0);" title="风衣" target="_blank">风衣</a></li>
+				<li><a href="javascript:void(0);" title="休闲西装" target="_blank">休闲西装</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="middle-layout">
+		<ul class="tabs-nav">
+			<li class="tabs-selected"><i class="arrow"></i>
+				<h3>美容美妆</h3></li>
+		</ul>
+		<div class="tabs-panel middle-banner-style01 fade-img " id="index_advimg">
+
+			<!-- 获取a广告列表 -->
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+					<li class="a1">
+						<a href="/b2b2c">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/bc04604eb390f8907db48e51862f97c9.png" height="194" alt="美妆A美食免费试吃" width="194" class="aaaaaa" rel="22" border="0" style="opacity: 1;">						</a>
+					</li>
+					<li class="a2">
+						<a href="/b2b2c">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/78f073a735fcaf56e4def853a2e28753.png" height="194" alt="美妆A浪漫桃花季" width="194" class="aaaaaa" rel="23" border="0" style="opacity: 1;">						</a>
+					</li>
+
+			<!-- 获取b广告列表 -->
+							<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+					<li class="b1">
+						<a href="/b2b2c">
+							<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/e597db9ca5b0156f8d07a2489dca6ea4.png" height="388" alt="美妆B带着味蕾游全球" width="388" border="0" class="undefined" style="opacity: 1; background: rgb(0, 0, 0);"></a>
+					</li> 
+
+			<!-- 获取c广告列表 -->
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+					<li class="c1">
+						<a href="/b2b2c">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/371a354f634af10b8d230965fcdaa507.png" height="194" alt="美妆C热门美食盘点" width="194" border="0" style="opacity: 1;">						</a>
+					</li> 
+					<li class="c2">
+						<a href="/b2b2c">
+<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/be0122abb369b018168abbf39d5260c5.png" height="194" alt="美妆C办公室零食" width="194" border="0" style="opacity: 1;">						</a>
+					</li> 
+
+			<!-- 获取d广告列表 -->
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+					<li class="d1">
+						<a href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/3c9f847ed672b7eb3d20fcac37fafc3d.png" height="110" alt="美妆D玫瑰花" width="194" border="0" style="opacity: 1;"></a>
+					</li> 
+					<li class="d2">
+						<a href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/d70b73b884de4f3d53797654dd3e48be.png" height="110" alt="美妆D核桃" width="194" border="0" style="opacity: 1;"></a>
+					</li> 
+					<li class="d3">
+						<a href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/946fa7f157b3dfae134e29abecedc2c3.png" height="110" alt="美妆D闷倒驴" width="194" border="0" style="opacity: 1;"></a>
+					</li> 
+					<li class="d4">
+						<a href="/b2b2c">
+						<img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/946fa7f157b3dfae134e29abecedc2c3.png" height="110" alt="美妆D闷倒驴" width="194" border="0" style="opacity: 1;"></a>
+					</li> 
+		</div>
+	</div>
+	<div class="right-sidebar">
+		<div class="title"></div>
+		<div class="recommend-brand">
+			<ul>
+				<!-- 获取广告品牌列表 -->
+				 
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+				 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/62c9e3f616f979246efa261aaf4fd330.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/bd20458e82d1da3f8450b24644064cf6.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/2f04071b44b72d52034d871e51171ba7.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/849fabc1e29a127aa9cfa1d84380d037.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/21b79472d4429e8f43163293c20065ba.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/bab98e9281505417c16de65505ac8a7c.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/4ff0554da8a79ea457c0c65a5442e8f9.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/19511a928500444fe02035d4c7bb97d9.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/b2b3cb3111a10de3e73ef3ca57932c4b.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/19511a928500444fe02035d4c7bb97d9.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/04528beac290a697422f95b440b3c1be.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li> 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/2a5345853e1fb9f824ef2d7975355ae4.jpg" height="32" alt="美妆品牌" width="96" border="0"></a></li>  
+			</ul>
+		</div>
+		<div class="right-side-focus">
+			<ul>
+				<!-- 获取广告品牌列表 -->
+				 
+				<!-- 获取广告图片宽度 -->
+				<!-- 获取广告图片高度 -->
+				 
+				<li><a target="_blank" href="/b2b2c"><img src="http://www.javamall.com.cn/b2b2c/statics/attachment/adv/ce3a61d7533a9df52a6a0674f0573b82.jpg" height="241" alt="美妆右侧品牌下广告" width="212" border="0"></a></li>  
+			</ul>
+		</div>
+	</div>
+</div>
+<!--底部广告位-->
+<div style="clear: both;"></div>
+<div id="web_chat_dialog" style="display: none; float: right;"></div>
+<a id="chat_login" href="javascript:void(0)" style="display: none;"></a>
+<div class="clear"></div>
+<script>
+$(function(){
+
+	//动态变换透明度
+	/*登陆页面 左边*/
+ 	$(".style-green #index_advimg li img").hover(function (){
+        $(".style-green #index_advimg li img").css("background","#000");
+        $(".style-green #index_advimg li img").fadeTo(0,0.5)
+    },function (){
+        $(".style-green #index_advimg li img").css("background","");
+    });
+		
+    $(".style-green #index_advimg li img").hover(function(){
+        var className = $(this).attr('class')+"_h";
+        $(this).removeClass().addClass(className);
+        $(this).fadeTo(0,2);  
+        $(this).css("background","");
+    },function (){
+        var className = $(this).attr('class');
+        className = className.replace("_h","")
+        $(this).removeClass().addClass(className);
+        $(this).css("background","#000");
+        $(this).fadeTo(0,0.5);  
+    });
+    
+    $(".style-green #index_advimg").mouseout(function(){
+    	$(".style-green #index_advimg li img").css("opacity","1")
+    }) 
+    
+    //pink
+    $(".style-pink #index_advimg li img").hover(function (){
+        $(".style-pink #index_advimg li img").css("background","#000");
+        $(".style-pink #index_advimg li img").fadeTo(0,0.5)
+    },function (){
+        $(".style-pink #index_advimg li img").css("background","");
+    });
+		
+    $(".style-pink #index_advimg li img").hover(function(){
+        var className = $(this).attr('class')+"_h";
+        $(this).removeClass().addClass(className);
+        $(this).fadeTo(0,2);  
+        $(this).css("background","");
+    },function (){
+        var className = $(this).attr('class');
+        className = className.replace("_h","")
+        $(this).removeClass().addClass(className);
+        $(this).css("background","#000");
+        $(this).fadeTo(0,0.5);  
+    });
+    
+    $(".style-pink #index_advimg").mouseout(function(){
+    	$(".style-pink #index_advimg li img").css("opacity","1")
+    }) 
+    
+    //blue
+    $(".style-blue #index_advimg li img").hover(function (){
+        $(".style-blue #index_advimg li img").css("background","#000");
+        $(".style-blue #index_advimg li img").fadeTo(0,0.5)
+    },function (){
+        $(".style-blue #index_advimg li img").css("background","");
+    });
+		
+    $(".style-blue #index_advimg li img").hover(function(){
+        var className = $(this).attr('class')+"_h";
+        $(this).removeClass().addClass(className);
+        $(this).fadeTo(0,2);  
+        $(this).css("background","");
+    },function (){
+        var className = $(this).attr('class');
+        className = className.replace("_h","")
+        $(this).removeClass().addClass(className);
+        $(this).css("background","#000");
+        $(this).fadeTo(0,0.5);  
+    });
+    
+    $(".style-blue #index_advimg").mouseout(function(){
+    	$(".style-blue #index_advimg li img").css("opacity","1")
+    }) 
+    
+    
+		
+	//标签切换
+	$(".home-sale-layout .tabs-nav li").mouseover(function(){
+		$(".home-sale-layout .tabs-nav li").removeClass("tabs-selected");
+		$(this).addClass("tabs-selected");
+		var goodslistnum = $(this).attr("rel");
+		$(".sale-goods-list").hide();
+		$("#goods"+ goodslistnum).show();
+	})
+		
+	//品牌
+		$(".recommend-brand ul li ").mouseover(function(){
+			$(".recommend-brand ul li").css("opacity","0.5");
+			$(this).css("opacity","1");
+		})
+    
+    $(".recommend-brand").mouseout(function(){
+    	$(".recommend-brand ul li").css("opacity","1")
+    })
+})
+
+</script>
+<!-----footer------>
+<div class="footer">
+	<div class="wrapper">
+	<!-- 
+	<div id="footer-top">
+		<ul>
+			<li class="one"><strong>正品行货<em>100%正品保证</em></strong></li>
+			<li class="two"><strong>正品行货<em>100%正品保证</em></strong></li>
+			<li class="three"><strong>正品行货<em>100%正品保证</em></strong></li>
+			<li class="four"><strong>正品行货<em>100%正品保证</em></strong></li>
+			<li class="five"><strong>正品行货<em>100%正品保证</em></strong></li>
+		</ul>
+	</div>
+	 -->
+	</div>
+	<!--帮助中心-->
+	  <div id="faq">
+	  <div class="wrapper">
+	    <ul>
+	        <li>
+		        <dl class="s1">
+		          	<dt>新手上路 </dt>
+		          			          		<dd><i></i>
+		          			<a href="help.html?articleid=10" title="顾客必读">顾客必读</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=11" title="会员等级折扣">会员等级折扣</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=13" title="积分规则">积分规则</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=32" title="购物流程">购物流程</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=31" title="常见问题">常见问题</a>
+		          		</dd>
+		       </dl>
+	      	</li>
+	        <li>
+	        	<dl class="s2">
+	          		<dt>支付</dt>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=20" title="支付方式">支付方式</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=28" title="付款常见问题">付款常见问题</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=29" title="索取发票">索取发票</a>
+		          		</dd>
+	            </dl>
+	      </li>
+	      <li>
+	    		<dl class="s3">
+			        <dt>配送</dt>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=30" title="配送范围">配送范围</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=21" title="配送方式">配送方式</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=23" title="关于收货与验货">关于收货与验货</a>
+		          		</dd>
+	          	</dl>
+	      </li>
+	      <li>
+	        	<dl class="s4">
+	          		<dt>服务</dt>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=16" title="售后服务">售后服务</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=18" title="免责条款">免责条款</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=14" title="商品退换货保障">商品退换货保障</a>
+		          		</dd>
+	           </dl>
+	      </li>
+	      <li>
+	        	<dl class="s5">
+	          		<dt>帮助</dt>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=26" title="满百免运费">满百免运费</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=27" title="晒单免单">晒单免单</a>
+		          		</dd>
+		        </dl>
+	      </li>
+	      <li>
+	        	<dl class="s6">
+	          		<dt>关于我们 </dt>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=33" title="订单查询">订单查询</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=12" title="订单状态">订单状态</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=34" title="订单常见问题">订单常见问题</a>
+		          		</dd>
+	            </dl>
+	      </li>
+	      <div class="clear"></div>
+	    </ul>
+	  </div>
+	</div>
+	<!--底部版权，调用footer.php-->
+	<div id="footer">
+		<div class="wrapper">
+		  <p><a href="javascript:void(0);">首页</a>
+             | <a href="javascript:void(0);">招聘英才</a>
+             | <a href="javascript:void(0);">广告合作</a>
+             | <a href="javascript:void(0);">联系我们</a>
+             | <a href="javascript:void(0);">关于我们</a>
+          </p>
+		</div>
+	</div>
+	</div>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?695a60ef05a898e14ac5eeebf8756d6a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+	<div style="display: none; visibility: hidden; position: absolute;" class=""><table class="ui_border"><tbody><tr><td class="ui_lt"></td><td class="ui_t"></td><td class="ui_rt"></td></tr><tr><td class="ui_l"></td><td class="ui_c"><div class="ui_inner"><table class="ui_dialog"><tbody><tr><td colspan="2"><div class="ui_title_bar"><div class="ui_title" unselectable="on" style="cursor: auto;"></div><div class="ui_title_buttons"><a class="ui_min" href="javascript:void(0);" title="最小化" style="display: none;"><b class="ui_min_b"></b></a><a class="ui_max" href="javascript:void(0);" title="最大化" style="display: none;"><b class="ui_max_b"></b></a><a class="ui_res" href="javascript:void(0);" title="还原"><b class="ui_res_b"></b><b class="ui_res_t"></b></a><a class="ui_close" href="javascript:void(0);" title="关闭(esc键)" style="display: inline-block;">×</a></div></div></td></tr><tr><td class="ui_icon" style="display: none;">&lt;@image src="" class="ui_icon_bg"/&gt;</td><td class="ui_main" style="width: auto; height: auto;"><div class="ui_content" style="padding: 10px;"></div></td></tr><tr><td colspan="2"><div class="ui_buttons" style="display: none;"></div></td></tr></tbody></table></div></td><td class="ui_r"></td></tr><tr><td class="ui_lb"></td><td class="ui_b"></td><td class="ui_rb" style="cursor: auto;"></td></tr></tbody></table></div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+10
+
+dir
+4
+https://192.168.1.4/svn/cqshop/trunk/source/cqshop/src/com/cqshop/plugin
+https://192.168.1.4/svn/cqshop
+
+
+
+2015-01-10T12:24:57.297237Z
+4
+yyy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+470bcb07-086a-a04f-90bf-d048b3216c7b
+
+file
+dir
+
+alipayDual
+dir
+
+paypal
+dir
+
+ftp
+dir
+
+tenpayDirect
+dir
+
+yeepay
+dir
+
+tenpayBank
+dir
+
+tenpayPartner
+dir
+
+unionpay
+dir
+
+StoragePlugin.java
+file
+
+
+
+
+2015-01-10T12:34:08.236216Z
+00ff6c5033ed94fa0aec8226a5ed025f
+2015-01-10T12:24:57.297237Z
+4
+yyy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3838
+
+oss
+dir
+
+alipayDirect
+dir
+
+pay99billBank
+dir
+
+alipayBank
+dir
+
+alipayPartner
+dir
+
+PaymentPlugin.java
+file
+
+
+
+
+2015-01-10T12:34:08.239216Z
+f4fbd330f2bc3e90cc6a959098e0add1
+2015-01-10T12:24:57.297237Z
+4
+yyy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13980
+
+pay99bill
+dir
+

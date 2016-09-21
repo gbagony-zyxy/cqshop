@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cqshop/!svn/ver/117/trunk/source/cqshop/WebRoot/WEB-INF/template/shop/article
+END
+list.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/cqshop/!svn/ver/117/trunk/source/cqshop/WebRoot/WEB-INF/template/shop/article/list.ftl
+END
+search.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/cqshop/!svn/ver/117/trunk/source/cqshop/WebRoot/WEB-INF/template/shop/article/search.ftl
+END
+content.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/cqshop/!svn/ver/117/trunk/source/cqshop/WebRoot/WEB-INF/template/shop/article/content.ftl
+END

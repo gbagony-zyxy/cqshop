@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>潭门砗磲网</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="ecdaddy.com">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="${base}/resources/mobile/style/base.css?v=ecdaddy" />
+<script type="text/javascript">
+function setTab(m,n){
+	var tli=document.getElementById("menu"+m).getElementsByTagName("li");
+	var mli=document.getElementById("main"+m).getElementsByTagName("ul");
+	for(i=0;i<tli.length;i++){
+		tli[i].className=i==n?"hover":"";
+		mli[i].style.display=i==n?"block":"none";
+	}
+}
+</script>
+</head>
+<body>
+[#include "/mobile/include/header.ftl" /]
+
+<form name="searchForm" method="get" action="search.php" class="search">
+	<input name="keywords" id="keyword" type="text" class="keyword" value="" placeholder="请输入关键词">
+	<input type="submit" value="搜索" class="search-button">
+</form>
+[#--
+{if $searchkeywords}
+<div class="w">热门：{foreach from=$searchkeywords item=val}<a href="search.php?keywords={$val|escape:url}">{$val}</a> {/foreach}</div>
+{/if} --]
+<div class="index-ads w">
+	<script type="text/javascript">
+			var widths=300;
+			var heights=80;
+			var counts=2;
+			img1=new Image();img1.src='${base}/resources/mobile/images/j1.jpg';
+			img2=new Image();img2.src='${base}/resources/mobile/images/j2.jpg';
+			url1=new Image();url1.src='#';
+			url2=new Image();url2.src='#';
+			var nn=1;
+			var key=0;
+			function change_img(){
+				if(key==0){
+					key=1;
+				}else if(document.all) {
+					document.getElementById("pic").filters[0].Apply();document.getElementById("pic").filters[0].Play(duration=2);
+				}
+				eval('document.getElementById("pic").src=img'+nn+'.src');
+				eval('document.getElementById("url").href=url'+nn+'.src');
+				for (var i=1;i <=counts;i++){
+					document.getElementById("xxjdjj"+i).className='axx';
+				}
+				document.getElementById("xxjdjj"+nn).className='bxx';
+				nn++;if(nn>counts){
+					nn=1;
+				}
+				tt=setTimeout('change_img()',4000);
+			}
+			function changeimg(n){
+				nn=n;window.clearInterval(tt);change_img();
+			}
+			document.write('<style type="text/css">');
+			document.write('.axx,.bxx{display:inline-block;width:14px;height:6px;margin:0 4px;overflow: hidden;text-indent: -99px;border: 1px solid #a5a5a5;box-shadow: 0 0 1px #999;border-radius: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;}');
+			document.write('a.axx:link,a.axx:visited{background-color:#F5F0E1;}');
+			document.write('a.axx:active,a.axx:hover{background-color:#999;}');
+			document.write('a.bxx:link,a.bxx:visited{background-color:#B5B5B5;}');
+			document.write('a.bxx:active,a.bxx:hover{background-color:#B5B5B5;}');
+			document.write('</style>');
+			document.write('<div style="width:'+widths+'px;height:115px;overflow:hidden;text-overflow:clip;margin:0px auto;padding-top:20px;text-align: center;">');
+			document.write('<div><a id="url"><img id="pic" style="border:0px;box-shadow: -2px 2px 2px #999;" width='+widths+' height='+heights+' /> </a> </div>');
+			document.write('<div style="margin-top:6px;">');
+			for(var i=1;i <counts+1;i++){
+				document.write('<a href="javascript:changeimg('+i+');" id="xxjdjj'+i+'" class="axx" target="_self">'+i+' </a>');
+			}
+			document.write('</div></div>');
+			change_img();
+		</script>
+</div>
+<div class="activities ">
+	<div class="container">
+		<div class="list">
+			<ul style="height:200px;">
+				<li class="one-img">
+					<div class="app">
+						<ul>
+							<li>
+								<dl>
+									<a href="category.php">
+									<dt><img src="${base}/resources/mobile/images/catimg/categorys.png" width="46" height="46" alt=""></dt>
+									</a>
+									<dd>商品分类</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<a href="brands.php">
+									<dt><img src="${base}/resources/mobile/images/catimg/band.png" width="46" height="46" alt=""></dt>
+									</a>
+									<dd>品牌馆</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<a href="goods_list.php?type=promote">
+									<dt><img src="${base}/resources/mobile/images/catimg/tuan.png" width="46" height="46" alt=""></dt>
+									</a>
+									<dd>特惠</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<a href="goods_list.php?type=best">
+									<dt><img src="${base}/resources/mobile/images/catimg/recharge.png" width="46" height="46" alt=""></dt>
+									</a>
+									<dd>精品</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<a href="goods_list.php?type=hot">
+									<dt><img src="${base}/resources/mobile/images/catimg/caipiao.png" width="46" height="46" alt=""></dt>
+									</a>
+									<dd>热门</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<a href="goods_list.php?type=new">
+									<dt><img src="${base}/resources/mobile/images/catimg/movie.png" width="46" height="46" alt=""></dt>
+									</a>
+									<dd>最新</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<a href="article.php?act=detail&a_id=5">
+									<dt><img src="${base}/resources/mobile/images/catimg/hotel.png" width="46" height="46" alt=""></dt>
+									</a>
+									<dd>关于我们</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<a href="kefu.php">
+									<dt><img src="${base}/resources/mobile/images/catimg/jipiao.png" width="46" height="46" alt=""></dt>
+									</a>
+									<dd>联系我们</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<a href="user.php">
+									<dt><img src="${base}/resources/mobile/images/catimg/myhome.png" width="46" height="46" alt=""></dt>
+									</a>
+									<dd>用户中心</dd>
+								</dl>
+							</li>
+                            <li>
+								<dl>
+									<a href="cart.php">
+									<dt><img src="${base}/resources/mobile/images/catimg/jingdian.png" width="46" height="46" alt=""></dt>
+									</a>
+									<dd>购物车</dd>
+								</dl>
+							</li>
+							
+							
+							<li>
+								<dl>
+									<a href="user.php?act=order_list">
+									<dt><img src="${base}/resources/mobile/images/catimg/ebook.png" width="46" height="46" alt=""></dt>
+									</a>
+									<dd>我们的订单</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="hot">
+	<div class="mt">
+		<ul class="menu0" id="menu0">
+			<li onClick="setTab(0,0)" class="hover"><span>精品推荐</span></li>
+			<li onClick="setTab(0,1)"><span>促销商品</span></li>
+			<li onClick="setTab(0,2)"><span>热门商品</span></li>
+		</ul>
+	</div>
+	<div class="main" id="main0">
+		<ul class="block">
+			<li>
+				<div class="mc">
+					<div class="t-lists"> 
+						
+						 <a href="goods_list.php?type=best">
+						<div class="box last">更多</div>
+						</a> </div>
+				</div>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<div class="mc">
+					<div class="t-lists">
+						<a href="goods_list.php?type=promote">
+						<div class="box last">更多</div>
+						</a> </div>
+				</div>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<div class="mc">
+					<div class="t-lists"> 
+						
+						<div class="box last">更多</div>
+						</a> </div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div> 
+
+<div class="to-top"><a href="javascript:scroll(0,0)" hidefocus="true"><span></span>回顶部</a></div>
+<footer>
+	
+	<a href='user.php?act=user_center'>用户中心</a>|<a href='user.php?act=logout'>退出</a>
+
+	<a href='user.php?act=login'>登录</a>|<a href='user.php?act=register'>注册</a>
+
+	<a href="kefu.php">客服</a>
+	<div class="copyright">Copyright &copy; 2014-2015 潭门砗磲网</div>
+</footer>
+
+</body>
+</html>

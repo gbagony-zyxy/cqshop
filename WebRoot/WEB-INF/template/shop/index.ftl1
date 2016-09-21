@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+[@seo type = "index"]
+	<title>[#if seo.title??][@seo.title?interpret /][#else]${message("shop.index.title")}[/#if]</title>
+	
+	
+	[#if seo.keywords??]
+		<meta name="keywords" content="[@seo.keywords?interpret /]" />
+	[/#if]
+	[#if seo.description??]
+		<meta name="description" content="[@seo.description?interpret /]" />
+	[/#if]
+[/@seo]
+<link rel="shortcut icon" href="${base}/favicon.ico" type="image/x-icon" />
+<link href="${base}/resources/shop/slider/slider.css" rel="stylesheet" type="text/css" />
+<link href="${base}/resources/shop/css/common.css" rel="stylesheet" type="text/css" />
+<link href="${base}/resources/shop/css/index.css" rel="stylesheet" type="text/css" />
+<link href="${base}/resources/shop/css/product.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/resources/shop/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/js/jquery.tools.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/slider/slider.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/js/common.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $slider = $("#slider");
+	var $newArticleTab = $("#newArticle .tab");
+	var $promotionProductTab = $("#promotionProduct .tab");
+	var $promotionProductInfo = $("#promotionProduct .info");
+	var $hotProductTab = $("#hotProduct .tab");
+	var $newProductTab = $("#newProduct .tab");
+	var $hotProductImage = $("#hotProduct img");
+	var $newProductImage = $("#newProduct img");
+	
+	$slider.nivoSlider({
+		effect: "random",
+		animSpeed: 1000,
+		pauseTime: 6000,
+		controlNav: true,
+		keyboardNav: false,
+		captionOpacity: 0.4
+	});
+	
+	$newArticleTab.tabs("#newArticle .tabContent", {
+		tabs: "li",
+		event: "mouseover",
+		initialIndex: 1
+	});
+	
+	$promotionProductTab.tabs("#promotionProduct .tabContent", {
+		tabs: "li",
+		event: "mouseover"
+	});
+	
+	$hotProductTab.tabs("#hotProduct .tabContent", {
+		tabs: "li",
+		event: "mouseover"
+	});
+	
+	$newProductTab.tabs("#newProduct .tabContent", {
+		tabs: "li",
+		event: "mouseover"
+	});
+	
+	function promotionInfo() {
+		$promotionProductInfo.each(function() {
+			var $this = $(this);
+			var beginDate = $this.attr("beginTimeStamp") != null ? new Date(parseFloat($this.attr("beginTimeStamp"))) : null;
+			var endDate = $this.attr("endTimeStamp") != null ? new Date(parseFloat($this.attr("endTimeStamp"))) : null;
+			if (beginDate == null || beginDate <= new Date()) {
+				if (endDate != null && endDate >= new Date()) {
+					var time = (endDate - new Date()) / 1000;
+					$this.html("${message("shop.index.remain")}:<em>" + Math.floor(time / (24 * 3600)) + "<\/em> ${message("shop.index.day")} <em>" + Math.floor((time % (24 * 3600)) / 3600) + "<\/em> ${message("shop.index.hour")} <em>" + Math.floor((time % 3600) / 60) + "<\/em> ${message("shop.index.minute")}");
+				} else if (endDate != null && endDate < new Date()) {
+					$this.html("${message("shop.index.ended")}");
+				} else {
+					$this.html("${message("shop.index.going")}");
+				}
+			}
+		});
+	}
+	
+	promotionInfo();
+	setInterval(promotionInfo, 60 * 1000);
+	
+	$hotProductImage.lazyload({
+		threshold: 100,
+		effect: "fadeIn",
+		skip_invisible: false
+	});
+	
+	$newProductImage.lazyload({
+		threshold: 100,
+		effect: "fadeIn",
+		skip_invisible: false
+	});
+
+});
+
+</script>
+</head>
+<body>
+	[#include "/shop/include/header.ftl" /]
+	<div class="container index">
+		<div class="span6">
+			<div class="hotProductCategory">
+				[@product_category_root_list]
+					<ul id="categorylist">
+						[#list productCategories as category]
+							<li class="first"><a href="${base}${category.path}">${category.name}</a><img src="${base}/upload/image/arrow.gif" />
+								[@product_category_children_list productCategoryId = category.id]
+									<ul style="display:none;" id="subbox_${category_index}">
+										[#list productCategories as productCategory]
+											<li>
+												<a href="${base}${productCategory.path}">${productCategory.name}</a>
+											</li>
+										[/#list]
+									</ul>
+								[/@product_category_children_list]
+							</li>
+						[/#list]
+					</ul>
+				[/@product_category_root_list]
+			</div>
+		</div>
+		<div class="span18">
+			[@ad_position id = 3 /]
+		</div>
+		<div class="span6 last">
+			<div id="newArticle" class="newArticle">
+				[@article_category_root_list count = 3]
+					<ul class="tab">
+						[#list articleCategories as articleCategory]
+							<li>
+								<a href="${base}${articleCategory.path}" target="_blank">${articleCategory.name}</a>
+							</li>
+						[/#list]
+					</ul>
+					[#list articleCategories as articleCategory]
+						[@article_list articleCategoryId = articleCategory.id count = 5]
+							<ul class="tabContent">
+								[#list articles as article]
+									<li>
+										<a href="${base}${article.path}" title="${article.title}" target="_blank">${abbreviate(article.title, 30)}</a>
+									</li>
+								[/#list]
+							</ul>
+						[/@article_list]
+					[/#list]
+				[/@article_category_root_list]
+			</div>
+			[@ad_position id = 4 /]
+			
+		</div>
+		
+		<div class="span18">
+			<div class="hotBrand clearfix">
+				<div class="title">
+					<a href="${base}/brand/list/1.jhtml">more</a>
+					<strong>${message("shop.index.hotProduct")}</strong>
+				</div>
+				<ul>
+					[@product_list tagIds = 1 count = 8]
+						[#list products as product]
+							<li>
+								<a href="${base}${product.path}">
+									<img src="${product.image}" width="170" height="170" data-original="[#if product.image??]${product.image}[#else]${setting.defaultThumbnailProductImage}[/#if]" />
+									<span class="price">
+										${currency(product.price, true)}
+										[#if setting.isShowMarketPrice]
+											<del>${currency(product.marketPrice, true)}</del>
+										[/#if]
+									</span>
+									<span title="${product.name}">${abbreviate(product.name, 60)}</span>
+								</a>
+							</li>
+						[/#list]
+					[/@product_list]
+				</ul>
+			</div>
+			<div class="hotBrand clearfix">
+				<div class="title">
+					<a href="${base}/product_category.jhtml">more</a>
+					<strong>${message("shop.index.newProduct")}</strong>
+				</div>
+			    <ul>
+					[@product_list tagIds = 2 count = 8]
+						[#list products as product]
+							<li>
+								<a href="${base}${product.path}">
+									<img src="${product.image}" width="170" height="170" data-original="[#if product.image??]${product.image}[#else]${setting.defaultThumbnailProductImage}[/#if]" />
+									<span class="price">
+										${currency(product.price, true)}
+										[#if setting.isShowMarketPrice]
+											<del>${currency(product.marketPrice, true)}</del>
+										[/#if]
+									</span>
+									<span title="${product.name}">${abbreviate(product.name, 60)}</span>
+								</a>
+							</li>
+						[/#list]
+					[/@product_list]
+				</ul>
+			</div>
+		</div>
+
+	
+	</div>
+
+		<!--帮助结束-->
+	[#include "/shop/include/footer.ftl" /]
+	
+<script type="text/javascript">
+	$(document).ready(function(){
+	$("ul#categorylist li.first").each(function(index){
+		$(this).hover(function(){
+		    if($("ul#subbox_"+(index)+">li").length>0) {
+		        $("ul#subbox_"+(index)).css("display","block");
+		    }
+		},function(){
+			$("ul#subbox_"+(index)).css("display","none");
+		});
+	});
+	$(".banner").fadeImage({
+		speed: 1000,
+		duration:10000
+	});
+});
+</script>
+</body>
+</html>

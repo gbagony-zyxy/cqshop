@@ -1,0 +1,192 @@
+10
+
+dir
+129
+https://192.168.1.4/svn/cqshop/trunk/source/cqshop/WebRoot/WEB-INF/template/shop
+https://192.168.1.4/svn/cqshop
+
+
+
+2015-02-24T15:29:58.967530Z
+121
+yyy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+470bcb07-086a-a04f-90bf-d048b3216c7b
+
+index.ftl.bak323
+file
+
+
+
+add
+
+6b54db3046837a29b78b32908e37ce66
+
+
+
+
+
+
+
+
+
+
+
+copied
+https://192.168.1.4/svn/cqshop/trunk/source/cqshop/WebRoot/WEB-INF/template/shop/index.ftl
+129
+
+product
+dir
+
+consultation
+dir
+
+article
+dir
+
+include
+dir
+
+register
+dir
+
+friend_link
+dir
+
+promotion
+dir
+
+brand
+dir
+
+seller
+dir
+
+common
+dir
+
+cart
+dir
+
+index.ftl
+file
+
+
+
+replace
+
+6b54db3046837a29b78b32908e37ce66
+2015-02-24T15:29:58.967530Z
+121
+yyy
+
+xml
+dir
+
+review
+dir
+
+password
+dir
+
+include_1
+dir
+
+
+
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+copied
+https://192.168.1.4/svn/cqshop/trunk/source/cqshop/WebRoot/WEB-INF/template/shop/include
+129
+
+member
+dir
+
+product_notify
+dir
+
+login
+dir
+
+index.ftl.bak2
+file
+
+
+
+add
+
+6b54db3046837a29b78b32908e37ce66
+
+
+
+
+
+
+
+
+
+
+
+copied
+https://192.168.1.4/svn/cqshop/trunk/source/cqshop/WebRoot/WEB-INF/template/shop/index.ftl
+129
+
+js
+dir
+
+index.ftl1
+file
+
+
+
+add
+
+6b54db3046837a29b78b32908e37ce66
+
+
+
+
+
+
+
+
+
+
+
+copied
+https://192.168.1.4/svn/cqshop/trunk/source/cqshop/WebRoot/WEB-INF/template/shop/index.ftl
+129
+
+product_category
+dir
+
+payment
+dir
+

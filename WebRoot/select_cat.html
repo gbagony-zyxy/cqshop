@@ -1,0 +1,498 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>示例商城</title> 
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=8">
+	
+</meta>
+
+<script>
+var member = "com.enation.app.base.core.model.Member@4867b3c3";
+var loginDialog;
+var ctx="/b2b2c";
+var app_path="/b2b2c";
+</script>
+
+	<link href="http://www.javamall.com.cn:8080/b2b2c/statics/images/favicon.ico" rel="shortcut icon">
+<link rel="stylesheet" type="text/css" href="./seller/base.css">
+<link rel="stylesheet" type="text/css" href="./seller/home_header.css">
+<link rel="stylesheet" type="text/css" href="./seller/home_login.css">
+<link rel="stylesheet" type="text/css" href="./seller/style.css">
+<link rel="stylesheet" type="text/css" href="./seller/index.css">
+<link rel="stylesheet" type="text/css" href="./seller/default.css">
+
+<link rel="stylesheet" type="text/css" href="./seller/dialog.css">
+<link rel="stylesheet" type="text/css" href="./seller/shop.css">
+
+<script src="./seller/jquery.js"></script>
+<script src="./seller/jquery.validate.js"></script> 
+<script src="./seller/jquery.form-3.51.js"></script> 
+
+<script src="./seller/lhgdialog.js"></script>
+<script src="./seller/common.js"></script>
+<script src="./seller/shop.js"></script>
+<script src="./seller/CartBar.js"></script>
+<script src="./seller/jquery.blockUI.js"></script>
+<script src="./seller/LoginDialog.js"></script>
+
+<script src="./seller/jquery.cookie.js"></script>
+<script src="./seller/perfect-scrollbar.min.js"></script>
+<script src="./seller/jquery.mousewheel.js"></script>
+<!-- jquery 布局 -->
+<script src="./seller/jquery.masonry.js"></script> 
+<!-- 异步加载图片 -->
+<script src="./seller/jquery.scrollLoading-min.js"></script>
+<!-- 轮播图js -->
+<script src="./seller/jquery.SuperSlide.2.1.1.js"></script>
+<script src="./seller/jquery.ui.js"></script>
+<!-- jquery的布局插件 -->
+<script src="./seller/jquery.masonry.js"></script>
+<script type="text/javascript">
+
+var ctx="/b2b2c";
+$(function(){
+	$("#logout").click(function(){
+		$.ajax({
+			url:"/b2b2c/api/shop/member!logout.do?ajax=yes",
+			dataType:"json",
+			cache: false,             //清楚缓存，暂时测试，如果产生冲突，请优先考虑是否是这条语句。
+			success:function(result){
+				if(result.result==1){
+					//$.alert(result.message);
+					location.href="/b2b2c/index.html";
+				}else{
+					$.alert(result.message);
+				}	
+				$.Loading.hide();
+			},
+			error:function(){
+				$.Loading.hide();
+				$.alert("出错了:(");
+			}
+		});
+		return false;
+	});	
+		
+	$(".quick-menu dl").hover(function() {
+		$(this).addClass("hover");
+	},function() {
+		$(this).removeClass("hover");
+	});
+})
+
+</script>
+</head>
+<body>
+	<div id="append_parent"></div>
+	<div class="public-top-layout w">
+		<div class="topbar wrapper">
+			<div class="user-entry">
+					 您好
+					<span>
+						<a href="/b2b2c/member/member.html">julian208</a>
+					</span>
+					，欢迎来到
+					<a alt="首页" title="首页" href="/b2b2c/index.html">示例B2B2C示例商城</a>
+					<span>
+						[<a id="logout" href="javascript:void(0);">退出</a>]
+					</span>
+				<span class="seller-login"> 
+					<a href="/b2b2c/store/business_center.html" target="_top" title="商家中心" target="_blank" title="登录商家管理中心">
+					<script type="text/javascript">var isLogin= true;</script>
+						<i class="icon-signin"></i>
+						商家管理中心
+					</a>
+				</span>
+			</div>
+			<div class="quick-menu">
+				<dl>
+					<dt>
+						<a href="/b2b2c/member/order.html">我的订单</a><i></i>
+					</dt>
+					<dd>
+						<ul>
+							<li><a href="/b2b2c/member/order.html?status=0">待付款订单</a></li>
+							<li><a href="/b2b2c/member/order.html?order_state=5">待确认收货</a></li>
+							<li><a href="/b2b2c/member/order.html?order_state=7">待评价交易</a></li>
+						</ul>
+					</dd>	
+				</dl>
+				<dl>
+					<dt>
+						<a href="/b2b2c/member/favorite.html" title="我的收藏" target="_top">我的收藏</a><i></i>
+					</dt>
+					<dd>
+						<ul>
+							<li><a href="/b2b2c/member/favorite.html" target="_top" title="收藏的商品">收藏的商品</a></li>
+							<li><a href="/b2b2c/member/collect_store.html" target="_top" title="收藏的店铺">收藏的店铺</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						客户服务<i></i>
+					</dt>
+					<dd>
+						<ul>
+							<li><a href="/b2b2c/help-21-7.html">帮助中心</a></li>
+							<li><a href="/b2b2c/help.html?articleid=16">售后服务</a></li>
+							<li><a href="/b2b2c/help.html?articleid=8">客服中心</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						站点导航<i></i>
+					</dt>
+					<dd>
+						<ul>
+							<li><a target="_blank" href="/b2b2c/index.html">商城首页</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+<!-- 获取店铺信息  -->
+
+<!-- 商家中心样式 -->
+<link rel="stylesheet" type="text/css" href="/b2b2c/themes/b2b2c/css/member_store.css" />
+
+<link rel="stylesheet" type="text/css" href="/b2b2c/themes/b2b2c/css/member.css" />
+
+<script type="text/javascript">
+	$.dialog({
+		lock: true,
+	    content: '请先添加商品分类',
+	    ok: function(){
+	        this.reload(null,"/cqshop/goods_cat.html");
+	    },
+	    close:function(){
+	    	this.reload(null,"/cqshop/goods_cat.html");
+	    }
+	}); 
+</script>
+
+<div class="layout">
+	<!-- S setp -->
+
+	<ul class="flow-chart">
+		<li title="选择商品所在分类" class="step a1"></li>
+		<li title="填写商品详细信息" class="step b2"></li>
+		<li title="商品发布成功" class="step c2"></li>
+	</ul>
+	<!--S 分类选择区域-->
+	<div class="wrapper_search">
+		<div style="display: none;" class="wp_search_result">
+			<div class="back_to_sort">
+				<a nc_type="return_choose_sort" href="JavaScript:void(0);">&lt;&lt;返回商品分类选择</a>
+			</div>
+			<div style="display: none;" id="searchNone" class="no_result">
+				<div class="cont">
+					<p>没有找到相关的商品分类。</p>
+					<p>
+						<a nc_type="return_choose_sort" href="JavaScript:void(0);">
+							<button>返回商品分类选择</button>
+						</a>
+					</p>
+					<p></p>
+				</div>
+			</div>
+			<div style="display: none;" id="searchLoad" class="has_result">
+				<div class="loading">
+					<img alt="loading..."
+						src="#"
+						style="display: block;"><span class="txt_searching">搜索中...</span>
+				</div>
+			</div>
+			<div style="display: none;" id="searchSome" class="has_result">
+				<div id="searchEnd"></div>
+				<div id="searchList" class="result_list">
+					<ul>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div style="position: relative;" class="wp_sort">
+			<!-- <div class="wp_data_loading" id="dataLoading" style="display: block;">
+				<div class="data_loading">加载中...</div>
+			</div> -->
+			<div class="wp_sort_block" id="class_div">
+				
+			</div>
+		</div>
+		<div style="display: block; clear: both;" class="tips_choice">
+			<span class="tips_zt"></span>
+			<dl class="hover_tips_cont">
+				<dt id="commodityspan" style="display: none;">
+					<span style="color: #F00;">请选择商品类别</span>
+				</dt>
+				<dt class="current_sort" style="" id="commoditydt">您当前选择的商品类别是：</dt>
+				<dd id="commoditydd"></dd>
+				<dd style="display: none;" id="commoditya">
+					&nbsp;&nbsp;<a href="JavaScript:void(0);">[添加到常用分类]</a>
+				</dd>
+			</dl>
+		</div>
+		<div class="wp_confirm">
+			<span class="btn_confirm">
+				<form method="get">
+					<input type="hidden" value="store_goods" name="act"> <input
+						type="hidden" value="add_goods" name="op"> <input
+						type="hidden" value="two" name="step"> <input
+						type="hidden" value="1132" id="class_id" name="class_id">
+					<input type="hidden" value="0" id="t_id" name="t_id">
+					
+					<input type="button" class="submit" value="下一步" id="nextBtn" disabled="disabled">
+				</form>
+			</span>
+		</div>
+	</div>
+	<script type="text/javascript">
+		SEARCHKEY = '请输入商品名称或分类属性名称';
+	</script>
+	<script
+		src="#"
+		type="text/javascript"></script>
+</div>
+
+<script>
+	var CatLoader = {
+		init : function() {
+			var self = this;
+			this.loadChildren(0);
+
+			$("#nextBtn").click(function(){
+				var catid = self.getSelectedCatId();
+				if (!catid) {
+					alert("请选择商品的分类");
+				} else {
+					location.href = "add_goods.html?store_id=0&catid=" + catid;
+				}
+
+			});
+		},
+		loadChildren : function(catid) {
+			var self = this;
+			$.ajax({
+				type : 'GET',
+				url : '/b2b2c/api/b2b2c/goodsCat!getStoreGoodsChildJson.do?ajax=yes&cat_id='+catid,
+				dataType : 'json',
+				success : function(result) {
+					if (result.result == 1) {
+						self.appendCatList(result.data, catid);
+						self.refreshPath();
+					} else {
+						alert("加载分类出错[" + result.message + "]");
+					}
+				},
+				error : function() {
+					
+				}
+
+			});
+		},
+		appendCatList : function(catJson, catid) {
+			if (catJson.length == 0)
+				return;
+			var self = this;
+			var selHtml = '<div class="sort_list cat_box" id="box_'+catid+'" >';
+			selHtml +='<div class="wp_category_list">'
+			selHtml +='<div class="category_list" id="class_div_1">'
+			selHtml +='<ul>'
+			$.each(catJson, function(i, cat) {
+				selHtml +='<li catid="'+cat.cat_id+'" class="" id="box_'+catid+'" >'
+				selHtml +='<a href="javascript:void(0)" catid="'+cat.cat_id+'" class=""><span class="has_leaf">'+cat.name+'</span></a>'	
+				selHtml += "</li>";
+			});
+			selHtml +='</ul></div></div></div>'
+			
+			$(selHtml).appendTo($("#class_div")).find("a").click(function() {
+				var $this = $(this);
+				self.removeChildBox($this.parent().attr("id"));
+				self.loadChildren($this.attr("catid"));
+
+				$this.parent().parent().find('a').removeClass("classDivClick");
+				$this.addClass("classDivClick");
+				
+				$("#nextBtn").attr("disabled", false);
+			});
+
+		},
+		removeChildBox : function(boxid) {
+			var flag = false;
+			$("#class_div .cat_box").each(function() {
+				var $this = $(this);
+				if (flag) {
+					$this.remove();
+				}
+				if ($this.attr("id") == boxid) {
+					flag = true;
+				}
+			});
+		},
+		refreshPath : function() {
+			var pathbox = $("#commoditydd").empty();
+			var html = "";
+			$("#class_div a.classDivClick").each(function(i, v) {
+				if (i != 0){
+					html += "&nbsp;&gt;&nbsp;";
+				}
+				var name = $(this).text();
+				html += name ;
+			});
+			pathbox.append(html);
+		},
+		getSelectedCatId : function() {
+			var catEl = $("#class_div a.classDivClick:last");
+			if (catEl.length == 0) {
+				return false;
+			} else {
+				return catEl.attr("catid");
+			}
+
+		}
+
+	};
+	$(function() {
+		CatLoader.init();
+	});
+</script>
+<div class="footer">
+	<div class="wrapper">
+	<!-- 
+	<div id="footer-top">
+		<ul>
+			<li class="one"><strong>正品行货<em>100%正品保证</em></strong></li>
+			<li class="two"><strong>正品行货<em>100%正品保证</em></strong></li>
+			<li class="three"><strong>正品行货<em>100%正品保证</em></strong></li>
+			<li class="four"><strong>正品行货<em>100%正品保证</em></strong></li>
+			<li class="five"><strong>正品行货<em>100%正品保证</em></strong></li>
+		</ul>
+	</div>
+	 -->
+	</div>
+	<!--帮助中心-->
+	  <div id="faq">
+	  <div class="wrapper">
+	    <ul>
+	        <li>
+		        <dl class="s1">
+		          	<dt>新手上路 </dt>
+		          			          		<dd><i></i>
+		          			<a href="help.html?articleid=10" title="顾客必读">顾客必读</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=11" title="会员等级折扣">会员等级折扣</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=13" title="积分规则">积分规则</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=32" title="购物流程">购物流程</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=31" title="常见问题">常见问题</a>
+		          		</dd>
+		       </dl>
+	      	</li>
+	        <li>
+	        	<dl class="s2">
+	          		<dt>支付</dt>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=20" title="支付方式">支付方式</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=28" title="付款常见问题">付款常见问题</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=29" title="索取发票">索取发票</a>
+		          		</dd>
+	            </dl>
+	      </li>
+	      <li>
+	    		<dl class="s3">
+			        <dt>配送</dt>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=30" title="配送范围">配送范围</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=21" title="配送方式">配送方式</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=23" title="关于收货与验货">关于收货与验货</a>
+		          		</dd>
+	          	</dl>
+	      </li>
+	      <li>
+	        	<dl class="s4">
+	          		<dt>服务</dt>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=16" title="售后服务">售后服务</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=18" title="免责条款">免责条款</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=14" title="商品退换货保障">商品退换货保障</a>
+		          		</dd>
+	           </dl>
+	      </li>
+	      <li>
+	        	<dl class="s5">
+	          		<dt>帮助</dt>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=26" title="满百免运费">满百免运费</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=27" title="晒单免单">晒单免单</a>
+		          		</dd>
+		        </dl>
+	      </li>
+	      <li>
+	        	<dl class="s6">
+	          		<dt>关于我们 </dt>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=33" title="订单查询">订单查询</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=12" title="订单状态">订单状态</a>
+		          		</dd>
+		          		<dd><i></i>
+		          			<a href="help.html?articleid=34" title="订单常见问题">订单常见问题</a>
+		          		</dd>
+	            </dl>
+	      </li>
+	      <div class="clear"></div>
+	    </ul>
+	  </div>
+	</div>
+	<!--底部版权，调用footer.php-->
+	<div id="footer" >
+		<div class="wrapper">
+		  <p><a href="javascript:void(0);">首页</a>
+             | <a  href="javascript:void(0);">招聘英才</a>
+             | <a  href="javascript:void(0);">广告合作</a>
+             | <a  href="javascript:void(0);">联系我们</a>
+             | <a  href="javascript:void(0);">关于我们</a>
+          </p>
+		</div>
+	</div>
+	</div>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?695a60ef05a898e14ac5eeebf8756d6a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+	
+</body>
+</html>
