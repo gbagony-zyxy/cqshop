@@ -2,4 +2,4 @@
 
 * This a website sales chequ goods.
 
-a little shame.
+a little shame and interest.
